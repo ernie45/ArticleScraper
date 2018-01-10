@@ -1,6 +1,15 @@
+body{
+    width: 100%;
+}
+.navbar{
+    width: 100%;
+}
 #mongoTitle {
     margin-left: 0px;
 }
-.container{
-    margin-left: 0px;
+.lightBlue{
+    background-color: #4286f4;
+}
+.darkerBlue{
+    background-color: #0a3f93;
 }

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-        $("#mainScraper").on("click", function(){
+    $("#mainScraper").on("click", function(){
         console.log("working button");
         $("#status").remove();
         
