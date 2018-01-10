@@ -18,7 +18,10 @@ app.set("view engine", "handlebars");
 
 /** HANDLE ROUTING */
 app.get("/", function(req, res){
-    res.render("index", {});
+    res.render("index");
+});
+app.get("/savedArticles", function(req, res){
+    res.render("savedArticles");
 });
 
 app.listen(port, function(){
