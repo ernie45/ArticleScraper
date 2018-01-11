@@ -12,7 +12,6 @@
             <a href="/savedArticles">
                 <h4 class="navbar-brand" id="name">Saved Articles</h4>
             </a>
-            <button type="button" class="btn btn-danger scraper" id="savedScraper"><h3>SCRAPE NEW ARTICLES!</h3></button>
         </div>
     </div>
 </nav>
@@ -26,7 +25,11 @@
             <h1>No Saved Articles at this Moment in Time!</h1>
         </div>
         <div id="savedarticlesDisplay">
-            
+            {{#each articles}}
+                <div class="saved" id={{this.id}}><a href={{this.hyperlink}}><span>{{this.header}}</span></a></div>
+                <button type="button" class="btn btn-secondary">Secondary</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+            {{/each}}
         </div>
     </div>
 </div>

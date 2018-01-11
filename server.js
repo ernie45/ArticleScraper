@@ -2,7 +2,6 @@
 var express = require("express");
 var exphbrs = require("express-handlebars");
 var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
 var request = require("request");
 var cheerio = require("cheerio");
 
@@ -16,13 +15,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.engine("handlebars", exphbrs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-/** HANDLE ROUTING */
-app.get("/", function(req, res){
-    res.render("index");
-});
-app.get("/savedArticles", function(req, res){
-    res.render("savedArticles");
-});
+
+require("./router.js")(app);
 
 app.listen(port, function(){
     console.log("Listening on port " + port);

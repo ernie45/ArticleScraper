@@ -26,7 +26,10 @@
             <h1>Seems as though thou hasn't any new articles!</h1>
         </div>
         <div id="articlesDisplay">
-            
+            {{#each articles}}
+                <div class="headingDiv"><a href={{this.hyperlink}}><span>{{this.heading}}</span></a></div>
+                <button type="button" class="btn btn-success saveButton" id={{this.id}}>SAVE ARTICLE</button>
+            {{/each}}
         </div>
     </div>
 </div>

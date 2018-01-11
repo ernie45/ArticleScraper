@@ -3,19 +3,22 @@ var Schema = mongoose.Schema;
 
 /** CREATE SCHEMA FOR ARTICLES */
 var ArticlesSchema = new Schema({
-    headlineLink: {
+    hyperlink: {
         type: String,
-        trim: true, 
-        required: "Must attach a headline"
+        required: true
     },
-    articleBody: {
+    heading: {
         type: String, 
-        trim: true,
-        required: "Body of an article is neccessary"
+        required: true
     },
     note: {
         type: Schema.Types.ObjectId,
-        ref: "Note"
+        ref: "Note",
+        required: false
+    },
+    saved: {
+        type: Boolean,
+        required: false
     }
 });
 
