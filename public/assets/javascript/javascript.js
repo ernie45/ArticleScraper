@@ -19,4 +19,16 @@ $(document).ready(function(){
             console.log("data saved");
         });
     });
+    $(".deleteArticle").on("click", function(){
+        var _id = $(this).attr("name");
+        $.ajax("/deleteArticle/" + _id, {
+            type: "PUT",
+            data: null
+        }).then(function(data){
+            console.log("data deleted");
+        });
+    });
+    $(".createNote").on("click", function(){
+        console.log("working button");
+    });
 });

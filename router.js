@@ -18,7 +18,7 @@ module.exports = function(app){
         console.log(req.params);
         console.log(req.body);
         // db.articles.update({_id: req.params._id}, {$set: {saved: false}});
-        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved : false}}).catch(err => console.log(err));
+        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved : true}}).catch(err => console.log(err));
     });
     app.get("/savedArticles", function(req, res){
         db.articles.find({
@@ -39,7 +39,11 @@ module.exports = function(app){
                 console.log(hyperlink);
                 db.articles.create({"heading": heading, "hyperlink": hyperlink})
             });
-            res.redirect('/')
+            res.redirect('/');
         });
+    });
+    app.put("/deleteArticle/:_id", function(req, res){
+        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved: false}}).catch(error => console.log(error));
+        res.redirect("/savedArticles");
     });
 };

@@ -28,14 +28,15 @@
             <h1>Seems as though thou hasn't any new articles!</h1>
         </div>
         <div id="articlesDisplay">
-            <div class="row">
                 {{#each articles}}
-                    <div class="col-md-6">
+                    <div class="row lightBlue space">
+                        <div class="col-md-6">
                         <div class="headingDiv"><a href={{this.hyperlink}}><span>{{this.heading}}</span></a></div>
-                    </div>
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-success saveButton" id={{this.id}} refer={{this.hyperlink}} head={{this.heading}}>SAVE ARTICLE</button>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-success saveButton" id={{this.id}} refer={{this.hyperlink}} head={{this.heading}}>SAVE ARTICLE</button>
+                        </div>
                     </div>
                 {{/each}}
             </div>

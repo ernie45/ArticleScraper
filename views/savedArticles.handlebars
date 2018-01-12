@@ -1,16 +1,16 @@
 <nav class="navbar navbar-default lightBlue">
     <div class="container lightBlue">
         <div class="navbar-header lightBlue col-lg-2">
-            <h1 class="navbar-brand" id="mongoTitle">Mongo Scraper</h1>
+            <h1 class="navbar-brand white" id="mongoTitle">Mongo Scraper</h1>
         </div>
         <div class="navbar-header darkerBlue col-lg-1">
             <a href="/">
-                <h4 class="navbar-brand" id="home">Home</h4>
+                <h4 class="navbar-brand white" id="home">Home</h4>
             </a>
         </div>
         <div class="navbar-header lightBlue col-lg-9">
             <a href="/savedArticles">
-                <h4 class="navbar-brand" id="name">Saved Articles</h4>
+                <h4 class="navbar-brand white" id="name">Saved Articles</h4>
             </a>
         </div>
     </div>
@@ -26,18 +26,25 @@
         </div>
         <div id="savedarticlesDisplay">
             {{#each articles}}
-                <div class="row">
+                <div class="row lightBlue space">
                     <div class="col-md-6">
-                        <div class="saved" id={{this.id}}><a href={{this.hyperlink}}><span>{{this.heading}}</span></a></div>
+                        <div class="saved white" id={{this.id}}><a href={{this.hyperlink}}><span>{{this.heading}}</span></a></div>
                     </div>
                     <div class="col-md-2"
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-secondary createNote" id={{this.id}}>ARTICLE NOTES</button>
+                        <button type="button" class="btn btn-secondary createNote white" id={{this.id}}>ARTICLE NOTES</button>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-danger deleteArticle" name={{this.id}}>DELETE FROM SAVED</button>
+                        <button type="button" class="btn btn-danger deleteArticle white" name={{this.id}}>DELETE FROM SAVED</button>
                     </div>
                 </div>
+                <div class="modal-body">
+                    <h5>Popover in a modal</h5>
+                    <p>This <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
+                    <hr>
+                    <h5>Tooltips in a modal</h5>
+                    <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
+                    </div>
             {{/each}}
         </div>
     </div>
