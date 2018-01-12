@@ -5,12 +5,18 @@ $(document).ready(function(){
         }
     });
     $("#mainScraper").on("click", function(){
-        console.log("working button");
+        $("#status").remove();
         $.getJSON("/scrape", function(data) {
-            $("#status").remove();
         }); 
     });
     $(".saveButton").on("click", function(){
-        console.log("You have clicked on " + this.id);
+        alert("Saved this article");
+        var _id = $(this).attr("id");
+        $.ajax("/saveArticle/" + _id, {
+            type: "PUT",
+            data: {"saved": true}
+        }).then(function(data){
+            console.log("data saved");
+        });
     });
 });

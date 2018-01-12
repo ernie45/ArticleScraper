@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default lightBlue">
     <div class="container lightBlue">
-        <div class="navbar-header lightBlue">
+        <div class="navbar-header lightBlue col-lg-2">
             <h1 class="navbar-brand" id="mongoTitle">Mongo Scraper</h1>
         </div>
-        <div class="navbar-header darkerBlue">
+        <div class="navbar-header darkerBlue col-lg-1">
             <a href="/">
                 <h4 class="navbar-brand" id="home">Home</h4>
             </a>
         </div>
-        <div class="navbar-header lightBlue">
+        <div class="navbar-header lightBlue col-lg-9">
             <a href="/savedArticles">
                 <h4 class="navbar-brand" id="name">Saved Articles</h4>
             </a>
@@ -26,9 +26,18 @@
         </div>
         <div id="savedarticlesDisplay">
             {{#each articles}}
-                <div class="saved" id={{this.id}}><a href={{this.hyperlink}}><span>{{this.header}}</span></a></div>
-                <button type="button" class="btn btn-secondary">Secondary</button>
-                <button type="button" class="btn btn-danger">Danger</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="saved" id={{this.id}}><a href={{this.hyperlink}}><span>{{this.heading}}</span></a></div>
+                    </div>
+                    <div class="col-md-2"
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-secondary createNote" id={{this.id}}>ARTICLE NOTES</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger deleteArticle" name={{this.id}}>DELETE FROM SAVED</button>
+                    </div>
+                </div>
             {{/each}}
         </div>
     </div>
