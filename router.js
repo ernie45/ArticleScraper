@@ -18,27 +18,13 @@ module.exports = function(app){
         /** Search the database, and choose  only 10 */
         db.articles.find({}).limit(10).then(function(data){
             /** Send the client the index handlebars along with articles to display */
-            res.render("index", {articles: data});
+            if (data.length === 0){
+                res.render("index");
+            }
+            else {
+                res.render("index", {articles: data});
+            }
         });
-    });
-
-    /** When receiving this path from the client, it should have an id to save the article */
-    app.put("/saveArticle/:_id", function(req, res){
-        console.log(req.params);
-        console.log(req.body);
-        // This uses the mongoose ORM to update the associated id to saved = true
-        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved : true}}).catch(err => console.log(err));
-    });
-
-    /** When receiving this path, search the database again */
-    app.get("/savedArticles", function(req, res){
-        db.articles.find({
-            saved: true
-        }).then(function(data){
-            /** When done searching, send the client the savedArticles handlebars with the saved articles */
-            res.render("savedArticles", {articles: data})    
-        });
-        //res.render("savedArticles");
     });
 
     /** When receiving scrape path */
@@ -53,25 +39,46 @@ module.exports = function(app){
                 var heading = $(this).text();
                 /** Get the link associated with that article */ 
                 var hyperlink = $(this).children("a").attr("href") || "no link";
-                console.log(hyperlink);
                 /** Use the mongoose ORM to populate our database with the info above */
-                db.articles.create({"heading": heading, "hyperlink": hyperlink})
+                db.articles.create({"heading": heading, "hyperlink": hyperlink}).then(function(data){
+                    
+                });
             });
+            res.redirect("/");
+        });
+    });
+
+    /** When receiving this path from the client, it should have an id to save the article */
+    app.put("/saveArticle/:_id", function(req, res){
+        // This uses the mongoose ORM to update the associated id to saved = true
+        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved : true}}).catch(err => console.log(err));
+    });
+
+    /** When receiving this path, search the database again */
+    app.get("/savedArticles", function(req, res){
+        db.articles.find({
+            saved: true
+        }).then(function(data){
+            /** When done searching, send the client the savedArticles handlebars with the saved articles */
+            if (data.length === 0){
+                res.render("savedArticles");
+            }
+            else{
+                res.render("savedArticles", {articles: data});
+            }    
         });
     });
 
     /** When receiving the delete articles path, along with the id,  */
-    app.put("/deleteArticle/:_id", function(req, res){
+    app.get("/deleteArticle/:_id", function(req, res){
         /** Use mongoose ORM to handle updating where id = req.params._id  and make it not saved */
-        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved: false}}).catch(error => console.log(error));
+        db.articles.findOneAndUpdate({_id: req.params._id}, {$set: {saved: false}}).then(function(){
+            res.redirect("/savedArticles");
+        });
     });
 
     /** When sent this path, save a note, this part doestn'' work well yet */
     app.get("/noteCreate", function(req, res){
-        res.render("saveNote", null);
-    });
-    app.get("/createNote", function(req, res){
-        console.log("redirect not working");
-        window.location.href;
+        res.redirect("/");
     });
 };

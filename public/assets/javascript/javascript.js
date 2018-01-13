@@ -10,25 +10,22 @@ $(document).ready(function(){
             type: "GET"
         }).then(function(data){
             //** Once router gets info, do this */
-            console.log("yep");
-            page.reload();
+            location.reload(true);
         });
     });
 
     /** This button will handle saving the articles */
     $(".saveButton").on("click", function(){
 
-        /**Let user know saving has been made */
-        alert("Saved this article");
         /** Grab the id associated with this article */
         var _id = $(this).attr("id");
         /** Allow router to use the path along with associated id */
         $.ajax("/saveArticle/" + _id, {
             type: "PUT",
-            data: {"saved": true}
+            data: null
         }).then(function(data){
             /** Once saved, let the user know */
-            console.log("data saved");
+            
         });
     });
 
@@ -39,17 +36,16 @@ $(document).ready(function(){
         var _id = $(this).attr("name");
         /** Allow router to use the path to delete the article */
         $.ajax("/deleteArticle/" + _id, {
-            type: "PUT",
-            data: null
+            type: "GET"
         }).then(function(data){
-            console.log("data deleted");
+            location.reload(true);
         });
     });
 
     /**This button still doesn't work well, but should handle saving a note */
     $(".createNote").on("click", function(){
         /** Let the server */
-        $.ajax("/createNote", {
+        $.ajax("/noteCreate", {
             type: "GET"
         }).then(function(data){
             console.log("uhu");
