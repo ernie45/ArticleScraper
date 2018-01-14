@@ -1,3 +1,4 @@
+{{!-- Navigatio bar  --}}
 <nav class="navbar navbar-default lightBlue">
     <div class="container lightBlue">
         <div class="navbar-header lightBlue col-lg-2">
@@ -24,6 +25,7 @@
         <div id="savedStatus">
             <h1>No Saved Articles at this Moment in Time!</h1>
         </div>
+        {{!-- This section displays the articles --}}
         <div id="savedarticlesDisplay">
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
@@ -50,9 +52,9 @@
                     <div class="col-md-6">
                         <div class="saved white" id={{this.id}}><a href={{this.hyperlink}}><span>{{this.heading}}</span></a></div>
                     </div>
-                    <div class="col-md-2"
+                    <div class="col-md-2"></div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-info btn-lg btn-secondary createNote" id={{this.id}}>ARTICLE NOTES</button>
+                        <button type="button" class="btn btn-info btn-lg btn-secondary createNote" data-toggle="modal" target="#myModal" class={{this.id}}>ARTICLE NOTES</button>
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-danger deleteArticle" name={{this.id}}>DELETE FROM SAVED</button>
